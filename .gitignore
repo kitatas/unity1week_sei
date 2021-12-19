@@ -58,3 +58,16 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# JetBrains
+.idea
+
+# Assets
+Assets/ConsolePro*
+Assets/Doozy*
+Assets/Editor*
+Assets/Feel*
+Assets/MPUIKit*
+Assets/naichilab*
+Assets/NCMB*
+Assets/Plugins*
+Assets/QHierarchy*
