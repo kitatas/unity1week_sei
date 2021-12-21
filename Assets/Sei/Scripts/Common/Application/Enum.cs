@@ -21,4 +21,12 @@ namespace Sei.Common
         Decision = 1,
         Cancel = 2,
     }
+
+    public enum SceneType
+    {
+        None = 0,
+        Title = 1,
+        Main = 2,
+        Result = 3,
+    }
 }
