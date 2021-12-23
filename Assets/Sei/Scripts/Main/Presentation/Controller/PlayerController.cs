@@ -1,5 +1,8 @@
+using System;
 using EFUK;
 using Sei.Main.Domain.UseCase;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using VContainer;
 
@@ -19,6 +22,25 @@ namespace Sei.Main.Presentation.Controller
             _accelUseCase = accelUseCase;
             _inputUseCase = inputUseCase;
             _playerMoveUseCase = playerMoveUseCase;
+        }
+
+        public void Init(HpUseCase hpUseCase)
+        {
+            this.OnTriggerEnter2DAsObservable()
+                .Subscribe(other =>
+                {
+                    if (other.TryGetComponent<ItemController>(out var item))
+                    {
+                        var addValue = item.type switch
+                        {
+                            ItemTyp.Increase => 1,
+                            ItemTyp.Decrease => -1,
+                            _ => throw new ArgumentOutOfRangeException(nameof(item.type), item.type, null)
+                        };
+                        hpUseCase.IncreaseHp(addValue);
+                    }
+                })
+                .AddTo(this);
         }
 
         public void Tick()

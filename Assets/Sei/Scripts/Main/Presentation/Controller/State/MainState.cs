@@ -19,6 +19,7 @@ namespace Sei.Main.Presentation.Controller
 
         public override async UniTask InitAsync(CancellationToken token)
         {
+            _playerController.Init(_hpUseCase);
         }
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)

@@ -7,4 +7,11 @@ namespace Sei.Main
         Main,
         Result,
     }
+
+    public enum ItemTyp
+    {
+        None,
+        Increase,
+        Decrease,
+    }
 }
