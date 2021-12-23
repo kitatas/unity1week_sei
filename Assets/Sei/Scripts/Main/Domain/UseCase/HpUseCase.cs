@@ -22,6 +22,12 @@ namespace Sei.Main.Domain.UseCase
             _hp.Value = _hpEntity.Get();
         }
 
+        public void SetZero()
+        {
+            _hpEntity.Set(0);
+            _hp.Value = _hpEntity.Get();
+        }
+
         public bool IsAlive() => _hpEntity.Get() > 0;
     }
 }

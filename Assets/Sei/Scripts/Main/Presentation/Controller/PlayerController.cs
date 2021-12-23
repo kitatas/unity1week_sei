@@ -26,6 +26,16 @@ namespace Sei.Main.Presentation.Controller
 
         public void Init(HpUseCase hpUseCase)
         {
+            this.OnTriggerExit2DAsObservable()
+                .Subscribe(other =>
+                {
+                    if (other.TryGetComponent<FieldController>(out var field))
+                    {
+                        hpUseCase.SetZero();
+                    }
+                })
+                .AddTo(this);
+
             this.OnTriggerEnter2DAsObservable()
                 .Subscribe(other =>
                 {
