@@ -7,10 +7,12 @@ namespace Sei.Main.Presentation.Controller
     public sealed class MainState : BaseGameState
     {
         private readonly HpUseCase _hpUseCase;
+        private readonly PlayerController _playerController;
 
-        public MainState(HpUseCase hpUseCase)
+        public MainState(HpUseCase hpUseCase, PlayerController playerController)
         {
             _hpUseCase = hpUseCase;
+            _playerController = playerController;
         }
 
         public override GameState state => GameState.Main;
@@ -23,6 +25,8 @@ namespace Sei.Main.Presentation.Controller
         {
             await UniTask.WaitWhile(() =>
             {
+                _playerController.Tick();
+
                 return _hpUseCase.IsAlive();
             }, cancellationToken: token);
 
