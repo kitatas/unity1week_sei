@@ -17,16 +17,16 @@ namespace Sei.Main.Domain.UseCase
 
         public float GetAccel() => _accelEntity.Get();
 
-        public void UpdateAccel(float inputValue)
+        public void UpdateAccel(float inputValue, float deltaTime)
         {
             var accel = _accelEntity.Get();
             if (inputValue > 0.0f)
             {
-                accel += inputValue * _acceleration * Time.deltaTime;
+                accel += inputValue * _acceleration * deltaTime;
             }
             else
             {
-                accel -= _deceleration * Time.deltaTime;
+                accel -= _deceleration * deltaTime;
             }
 
             _accelEntity.Set(Mathf.Clamp(accel, 0.0f, _maxAccel));

@@ -1,17 +1,20 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sei.Main.Domain.UseCase;
+using UnityEngine;
 
 namespace Sei.Main.Presentation.Controller
 {
     public sealed class MainState : BaseGameState
     {
         private readonly HpUseCase _hpUseCase;
+        private readonly TimeUseCase _timeUseCase;
         private readonly PlayerController _playerController;
 
-        public MainState(HpUseCase hpUseCase, PlayerController playerController)
+        public MainState(HpUseCase hpUseCase, TimeUseCase timeUseCase, PlayerController playerController)
         {
             _hpUseCase = hpUseCase;
+            _timeUseCase = timeUseCase;
             _playerController = playerController;
         }
 
@@ -26,7 +29,9 @@ namespace Sei.Main.Presentation.Controller
         {
             await UniTask.WaitWhile(() =>
             {
-                _playerController.Tick();
+                var deltaTime = Time.deltaTime;
+                _timeUseCase.Update(deltaTime);
+                _playerController.Tick(deltaTime);
 
                 return _hpUseCase.IsAlive();
             }, cancellationToken: token);

@@ -47,10 +47,10 @@ namespace Sei.Main.Presentation.Controller
                 .AddTo(this);
         }
 
-        public void Tick()
+        public void Tick(float deltaTime)
         {
             var inputValue = _inputUseCase.GetInputDirection().GetSqrLength(Vector2.zero);
-            _accelUseCase.UpdateAccel(inputValue);
+            _accelUseCase.UpdateAccel(inputValue, deltaTime);
             _playerMoveUseCase.Move(_inputUseCase.GetInputDirection() * _accelUseCase.GetAccel());
         }
     }

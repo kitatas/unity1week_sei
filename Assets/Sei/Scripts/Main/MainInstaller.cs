@@ -14,6 +14,7 @@ namespace Sei.Main
         [SerializeField] private PlayerController playerController = default;
 
         [SerializeField] private HpView hpView = default;
+        [SerializeField] private TimeView timeView = default;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -21,6 +22,7 @@ namespace Sei.Main
             builder.Register<AccelEntity>(Lifetime.Scoped);
             builder.Register<GameStateEntity>(Lifetime.Scoped);
             builder.Register<HpEntity>(Lifetime.Scoped);
+            builder.Register<TimeEntity>(Lifetime.Scoped);
 
             // UseCase
             builder.Register<AccelUseCase>(Lifetime.Scoped);
@@ -28,6 +30,7 @@ namespace Sei.Main
             builder.Register<HpUseCase>(Lifetime.Scoped);
             builder.Register<InputUseCase>(Lifetime.Scoped);
             builder.Register<PlayerMoveUseCase>(Lifetime.Scoped).WithParameter(playerController.GetComponent<Rigidbody2D>());
+            builder.Register<TimeUseCase>(Lifetime.Scoped);
 
             // Controller
             builder.Register<ReadyState>(Lifetime.Scoped);
@@ -39,9 +42,11 @@ namespace Sei.Main
             // Presenter
             builder.RegisterEntryPoint<GameStatePresenter>(Lifetime.Scoped);
             builder.RegisterEntryPoint<HpPresenter>(Lifetime.Scoped);
+            builder.RegisterEntryPoint<TimePresenter>(Lifetime.Scoped);
 
             // View
             builder.RegisterInstance<HpView>(hpView);
+            builder.RegisterInstance<TimeView>(timeView);
         }
     }
 }
