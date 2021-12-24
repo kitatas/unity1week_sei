@@ -11,14 +11,16 @@ namespace Sei.Main.Presentation.Controller
     public sealed class PlayerController : MonoBehaviour
     {
         private AccelUseCase _accelUseCase;
+        private EffectUseCase _effectUseCase;
         private InputUseCase _inputUseCase;
         private PlayerMoveUseCase _playerMoveUseCase;
 
         [Inject]
-        private void Construct(AccelUseCase accelUseCase, InputUseCase inputUseCase,
+        private void Construct(AccelUseCase accelUseCase, EffectUseCase effectUseCase, InputUseCase inputUseCase,
             PlayerMoveUseCase playerMoveUseCase)
         {
             _accelUseCase = accelUseCase;
+            _effectUseCase = effectUseCase;
             _inputUseCase = inputUseCase;
             _playerMoveUseCase = playerMoveUseCase;
         }
@@ -31,6 +33,7 @@ namespace Sei.Main.Presentation.Controller
                     if (other.TryGetComponent<FieldController>(out var field))
                     {
                         hpUseCase.SetZero();
+                        _effectUseCase.Generate(EffectType.Explode, transform.position);
                     }
                 })
                 .AddTo(this);
@@ -42,6 +45,10 @@ namespace Sei.Main.Presentation.Controller
                     if (other.TryGetComponent<ItemController>(out var item))
                     {
                         hpUseCase.Update(item.type);
+                        _effectUseCase.Generate(EffectType.Get, transform.position);
+
+                        item.Repopulate();
+                        _effectUseCase.Generate(item.type, item.transform.position);
                     }
                 })
                 .AddTo(this);

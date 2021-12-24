@@ -14,4 +14,13 @@ namespace Sei.Main
         Increase,
         Decrease,
     }
+
+    public enum EffectType
+    {
+        None,
+        Get,
+        ItemPlus,
+        ItemMinus,
+        Explode,
+    }
 }
