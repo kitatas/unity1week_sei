@@ -1,4 +1,3 @@
-using System;
 using EFUK;
 using Sei.Main.Domain.UseCase;
 using UniRx;
@@ -37,17 +36,12 @@ namespace Sei.Main.Presentation.Controller
                 .AddTo(this);
 
             this.OnTriggerEnter2DAsObservable()
+                .Where(_ => hpUseCase.IsAlive())
                 .Subscribe(other =>
                 {
                     if (other.TryGetComponent<ItemController>(out var item))
                     {
-                        var addValue = item.type switch
-                        {
-                            ItemTyp.Increase => 1,
-                            ItemTyp.Decrease => -1,
-                            _ => throw new ArgumentOutOfRangeException(nameof(item.type), item.type, null)
-                        };
-                        hpUseCase.IncreaseHp(addValue);
+                        hpUseCase.Update(item.type);
                     }
                 })
                 .AddTo(this);

@@ -1,3 +1,4 @@
+using System;
 using Sei.Main.Data.Entity;
 using UniRx;
 
@@ -16,8 +17,14 @@ namespace Sei.Main.Domain.UseCase
 
         public IReadOnlyReactiveProperty<int> hp => _hp;
 
-        public void IncreaseHp(int value)
+        public void Update(ItemTyp itemType)
         {
+            var value = itemType switch
+            {
+                ItemTyp.Increase => 1,
+                ItemTyp.Decrease => -1,
+                _ => throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null)
+            };
             _hpEntity.Add(value);
             _hp.Value = _hpEntity.Get();
         }

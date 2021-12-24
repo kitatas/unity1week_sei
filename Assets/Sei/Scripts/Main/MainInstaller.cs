@@ -34,11 +34,11 @@ namespace Sei.Main
             builder.Register<MainState>(Lifetime.Scoped);
             builder.Register<ResultState>(Lifetime.Scoped);
             builder.Register<GameStateController>(Lifetime.Scoped);
+            builder.RegisterInstance<PlayerController>(playerController);
 
             // Presenter
             builder.RegisterEntryPoint<GameStatePresenter>(Lifetime.Scoped);
             builder.RegisterEntryPoint<HpPresenter>(Lifetime.Scoped);
-            builder.RegisterInstance<PlayerController>(playerController);
 
             // View
             builder.RegisterInstance<HpView>(hpView);
