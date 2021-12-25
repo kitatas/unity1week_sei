@@ -9,4 +9,9 @@ namespace Sei.Common
     {
         public const float WIDTH = 800.0f;
     }
+
+    public sealed class ProjectConfig
+    {
+        public const string GAME_ID = "";
+    }
 }

@@ -37,5 +37,10 @@ namespace Sei.Common.Presentation.Controller
 
             await _transitionMaskView.FadeOutAsync(token);
         }
+
+        public void UnloadSceneAsync(SceneType sceneType)
+        {
+            SceneManager.UnloadSceneAsync(sceneType.ToString());
+        }
     }
 }

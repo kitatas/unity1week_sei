@@ -23,7 +23,8 @@ namespace Sei.Common.Presentation.View
                     .Append(buttonActivator.button.image.rectTransform
                         .DOScale(_currentScale * _rate, _animationTime))
                     .Append(buttonActivator.button.image.rectTransform
-                        .DOScale(_currentScale, _animationTime));
+                        .DOScale(_currentScale, _animationTime))
+                    .SetLink(gameObject);
             });
         }
     }

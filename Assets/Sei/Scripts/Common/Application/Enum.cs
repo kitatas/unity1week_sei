@@ -27,6 +27,6 @@ namespace Sei.Common
         None = 0,
         Title = 1,
         Main = 2,
-        Result = 3,
+        Ranking = 3,
     }
 }
