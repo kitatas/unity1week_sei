@@ -18,7 +18,7 @@ namespace Sei.Main
     public enum EffectType
     {
         None,
-        Get,
+        Destroy,
         ItemPlus,
         ItemMinus,
         Explode,
