@@ -1,5 +1,7 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Object = UnityEngine.Object;
 
 namespace Sei.Main.Presentation.Controller
 {
@@ -13,6 +15,13 @@ namespace Sei.Main.Presentation.Controller
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: token);
+
+            foreach (var item in Object.FindObjectsOfType<ItemController>())
+            {
+                item.Init();
+            }
+
             return GameState.Main;
         }
     }

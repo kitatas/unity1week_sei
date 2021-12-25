@@ -45,10 +45,9 @@ namespace Sei.Main.Presentation.Controller
                     if (other.TryGetComponent<ItemController>(out var item))
                     {
                         hpUseCase.Update(item.type);
-                        _effectUseCase.Generate(EffectType.Get, transform.position);
 
                         item.Repopulate();
-                        _effectUseCase.Generate(item.type, item.transform.position);
+                        _effectUseCase.Generate(item.type, transform.position);
                     }
                 })
                 .AddTo(this);
