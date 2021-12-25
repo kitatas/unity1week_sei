@@ -21,5 +21,7 @@ namespace Sei.Main.Domain.UseCase
             _timeEntity.Add(deltaTime);
             _time.Value = _timeEntity.Get();
         }
+
+        public float GetTime() => _timeEntity.Get();
     }
 }

@@ -20,6 +20,7 @@ namespace Sei.Main
 
         [SerializeField] private HpView hpView = default;
         [SerializeField] private ReadyView readyView = default;
+        [SerializeField] private ResultView resultView = default;
         [SerializeField] private TimeView timeView = default;
 
         protected override void Configure(IContainerBuilder builder)
@@ -63,6 +64,7 @@ namespace Sei.Main
             // View
             builder.RegisterInstance<HpView>(hpView);
             builder.RegisterInstance<ReadyView>(readyView);
+            builder.RegisterInstance<ResultView>(resultView);
             builder.RegisterInstance<TimeView>(timeView);
         }
     }
