@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Sei.Common;
 
 namespace Sei.Main.Presentation.Controller
 {
@@ -20,6 +22,8 @@ namespace Sei.Main.Presentation.Controller
 
         public async UniTaskVoid InitAsync(CancellationToken token)
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(CommonConfig.TRANSITION_TIME), cancellationToken: token);
+
             foreach (var state in _states)
             {
                 state.InitAsync(token).Forget();

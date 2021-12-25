@@ -7,7 +7,7 @@ namespace Sei.Main.Data.Entity
     {
         public HpEntity()
         {
-            Init(GameConfig.MAX_HP);
+            Init(0.0f);
         }
 
         public void Add(float value)

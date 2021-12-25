@@ -1,4 +1,5 @@
 using System;
+using EFUK;
 using Sei.Main.Data.Entity;
 using UniRx;
 
@@ -28,7 +29,7 @@ namespace Sei.Main.Domain.UseCase
             Update(value);
         }
 
-        private void Update(float value)
+        public void Update(float value)
         {
             _hpEntity.Add(value);
             _hp.Value = _hpEntity.Get();
@@ -46,5 +47,7 @@ namespace Sei.Main.Domain.UseCase
         }
 
         public bool IsAlive() => _hpEntity.Get() > 0;
+
+        public bool IsMax() => _hpEntity.Get().Equal(GameConfig.MAX_HP);
     }
 }
