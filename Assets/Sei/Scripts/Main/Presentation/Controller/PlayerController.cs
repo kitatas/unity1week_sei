@@ -59,5 +59,10 @@ namespace Sei.Main.Presentation.Controller
             _accelUseCase.UpdateAccel(inputValue, deltaTime);
             _playerMoveUseCase.Move(_inputUseCase.GetInputDirection() * _accelUseCase.GetAccel());
         }
+
+        public void Stop()
+        {
+            _playerMoveUseCase.Stop();
+        }
     }
 }

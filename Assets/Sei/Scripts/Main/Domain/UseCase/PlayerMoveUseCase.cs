@@ -16,5 +16,10 @@ namespace Sei.Main.Domain.UseCase
         {
             _rigidbody.AddForce(direction - _rigidbody.velocity);
         }
+
+        public void Stop()
+        {
+            _rigidbody.velocity = Vector2.zero;
+        }
     }
 }

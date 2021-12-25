@@ -36,6 +36,8 @@ namespace Sei.Main.Presentation.Controller
                 return _hpUseCase.IsAlive();
             }, cancellationToken: token);
 
+            _playerController.Stop();
+
             return GameState.Result;
         }
     }
