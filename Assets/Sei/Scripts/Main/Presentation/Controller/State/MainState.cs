@@ -30,6 +30,7 @@ namespace Sei.Main.Presentation.Controller
             await UniTask.WaitWhile(() =>
             {
                 var deltaTime = Time.deltaTime;
+                _hpUseCase.Decrease(deltaTime);
                 _timeUseCase.Update(deltaTime);
                 _playerController.Tick(deltaTime);
 

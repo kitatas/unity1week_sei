@@ -7,9 +7,9 @@ namespace Sei.Main.Presentation.View
     {
         [SerializeField] private TextMeshProUGUI hpText = default;
 
-        public void Show(int value)
+        public void Show(float value)
         {
-            hpText.text = $"{value.ToString()}";
+            hpText.text = $"{value: 0.00}";
         }
     }
 }

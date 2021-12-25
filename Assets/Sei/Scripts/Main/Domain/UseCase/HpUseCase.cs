@@ -7,26 +7,36 @@ namespace Sei.Main.Domain.UseCase
     public sealed class HpUseCase
     {
         private readonly HpEntity _hpEntity;
-        private readonly ReactiveProperty<int> _hp;
+        private readonly ReactiveProperty<float> _hp;
 
         public HpUseCase(HpEntity hpEntity)
         {
             _hpEntity = hpEntity;
-            _hp = new ReactiveProperty<int>(_hpEntity.Get());
+            _hp = new ReactiveProperty<float>(_hpEntity.Get());
         }
 
-        public IReadOnlyReactiveProperty<int> hp => _hp;
+        public IReadOnlyReactiveProperty<float> hp => _hp;
 
         public void Update(ItemTyp itemType)
         {
             var value = itemType switch
             {
-                ItemTyp.Increase => 1,
-                ItemTyp.Decrease => -1,
+                ItemTyp.Increase => 1.5f,
+                ItemTyp.Decrease => -0.5f,
                 _ => throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null)
             };
+            Update(value);
+        }
+
+        private void Update(float value)
+        {
             _hpEntity.Add(value);
             _hp.Value = _hpEntity.Get();
+        }
+
+        public void Decrease(float deltaTime)
+        {
+            Update(deltaTime * -1);
         }
 
         public void SetZero()

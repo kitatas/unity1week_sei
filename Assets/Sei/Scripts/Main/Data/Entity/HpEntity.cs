@@ -1,17 +1,18 @@
 using Sei.Common.Data.Entity;
+using UnityEngine;
 
 namespace Sei.Main.Data.Entity
 {
-    public sealed class HpEntity : BaseEntity<int>
+    public sealed class HpEntity : BaseEntity<float>
     {
         public HpEntity()
         {
-            Init(5);
+            Init(GameConfig.MAX_HP);
         }
 
-        public void Add(int value)
+        public void Add(float value)
         {
-            Set(Get() + value);
+            Set(Mathf.Clamp(Get() + value, 0.0f, GameConfig.MAX_HP));
         }
     }
 }
