@@ -1,15 +1,15 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sei.Main.Presentation.View
 {
     public sealed class HpView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI hpText = default;
+        [SerializeField] private Image hpImage = default;
 
         public void Show(float value)
         {
-            hpText.text = $"{value: 0.00}";
+            hpImage.fillAmount = Mathf.Clamp01(value / GameConfig.MAX_HP);
         }
     }
 }

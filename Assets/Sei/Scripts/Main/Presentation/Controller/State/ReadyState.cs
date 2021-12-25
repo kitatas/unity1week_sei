@@ -20,6 +20,7 @@ namespace Sei.Main.Presentation.Controller
         public override async UniTask InitAsync(CancellationToken token)
         {
             _readyView.Init();
+            await UniTask.Yield(token);
         }
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
