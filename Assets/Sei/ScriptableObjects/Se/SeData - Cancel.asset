@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SeData - Cancel
   m_EditorClassIdentifier: 
   type: 2
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 4a576b484e2984b809aba27c17376673, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BgmData - Result
   m_EditorClassIdentifier: 
   type: 3
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: fc3bf5ba33ed94ea9a16a44dca1034b4, type: 3}
