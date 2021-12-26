@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Sei.Common;
+using Sei.Common.Presentation.Controller;
 using Sei.Main.Domain.UseCase;
 using Sei.Main.Presentation.View;
 using UnityEngine;
@@ -11,11 +13,13 @@ namespace Sei.Main.Presentation.Controller
     public sealed class ReadyState : BaseGameState
     {
         private readonly HpUseCase _hpUseCase;
+        private readonly SeController _seController;
         private readonly ReadyView _readyView;
 
-        public ReadyState(HpUseCase hpUseCase, ReadyView readyView)
+        public ReadyState(HpUseCase hpUseCase, SeController seController, ReadyView readyView)
         {
             _hpUseCase = hpUseCase;
+            _seController = seController;
             _readyView = readyView;
         }
 
@@ -44,6 +48,8 @@ namespace Sei.Main.Presentation.Controller
                     await UniTask.Yield(token);
                 }
             }, token);
+
+            _seController.Play(SeType.Ready);
 
             await _readyView.DisplayAsync(token);
 

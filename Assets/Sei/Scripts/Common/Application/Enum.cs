@@ -13,6 +13,10 @@ namespace Sei.Common
         None = 0,
         Decision = 1,
         Cancel = 2,
+        Get = 3,
+        Destroy = 4,
+        Ready = 5,
+        Result = 6,
     }
 
     public enum ButtonType

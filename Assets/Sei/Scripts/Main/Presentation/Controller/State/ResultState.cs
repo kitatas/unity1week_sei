@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Sei.Common;
+using Sei.Common.Presentation.Controller;
 using Sei.Main.Domain.UseCase;
 using Sei.Main.Presentation.View;
 
@@ -9,11 +11,13 @@ namespace Sei.Main.Presentation.Controller
     public sealed class ResultState : BaseGameState
     {
         private readonly TimeUseCase _timeUseCase;
+        private readonly SeController _seController;
         private readonly ResultView _resultView;
 
-        public ResultState(TimeUseCase timeUseCase, ResultView resultView)
+        public ResultState(TimeUseCase timeUseCase, SeController seController, ResultView resultView)
         {
             _timeUseCase = timeUseCase;
+            _seController = seController;
             _resultView = resultView;
         }
 
@@ -28,6 +32,8 @@ namespace Sei.Main.Presentation.Controller
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: token);
+
+            _seController.Play(SeType.Result);
 
             await _resultView.DisplayAsync(token);
 

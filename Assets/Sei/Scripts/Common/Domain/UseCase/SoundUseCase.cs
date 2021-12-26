@@ -1,3 +1,4 @@
+using System;
 using Sei.Common.Domain.Repository;
 using Sei.Common.Domain.UseCase.Interface;
 using UnityEngine;
@@ -15,12 +16,24 @@ namespace Sei.Common.Domain.UseCase
 
         public AudioClip GetBgm(BgmType bgmType)
         {
-            return _soundRepository.FindBgm(bgmType).audioClip;
+            var data = _soundRepository.FindBgm(bgmType);
+            if (data == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(bgmType), bgmType, null);
+            }
+
+            return data.audioClip;
         }
 
         public AudioClip GetSe(SeType seType)
         {
-            return _soundRepository.FindSe(seType).audioClip;
+            var data = _soundRepository.FindSe(seType);
+            if (data == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(seType), seType, null);
+            }
+
+            return data.audioClip;
         }
     }
 }

@@ -1,5 +1,7 @@
 using DG.Tweening;
 using EFUK;
+using Sei.Common;
+using Sei.Common.Presentation.Controller;
 using Sei.Main.Domain.UseCase;
 using Sei.Main.Presentation.View;
 using UniRx;
@@ -18,15 +20,17 @@ namespace Sei.Main.Presentation.Controller
         private InputUseCase _inputUseCase;
         private PlayerMoveUseCase _playerMoveUseCase;
         private PlayerView _playerView;
+        private SeController _seController;
 
         [Inject]
         private void Construct(AccelUseCase accelUseCase, EffectUseCase effectUseCase, InputUseCase inputUseCase,
-            PlayerMoveUseCase playerMoveUseCase)
+            PlayerMoveUseCase playerMoveUseCase, SeController seController)
         {
             _accelUseCase = accelUseCase;
             _effectUseCase = effectUseCase;
             _inputUseCase = inputUseCase;
             _playerMoveUseCase = playerMoveUseCase;
+            _seController = seController;
             _playerView = GetComponent<PlayerView>();
         }
 
@@ -39,6 +43,8 @@ namespace Sei.Main.Presentation.Controller
                     {
                         hpUseCase.SetZero();
                         _effectUseCase.Generate(EffectType.Explode, transform.position);
+                        _seController.Play(SeType.Destroy);
+
                         FindObjectOfType<Camera>()
                             .DOShakePosition(0.25f)
                             .SetLink(gameObject);
@@ -56,6 +62,7 @@ namespace Sei.Main.Presentation.Controller
 
                         item.Repopulate();
                         _effectUseCase.Generate(item.type, transform.position);
+                        _seController.Play(SeType.Get);
                     }
                 })
                 .AddTo(this);
@@ -71,6 +78,8 @@ namespace Sei.Main.Presentation.Controller
         public void Stop()
         {
             _effectUseCase.Generate(EffectType.Destroy, transform.position);
+            _seController.Play(SeType.Get);
+
             _playerMoveUseCase.Stop();
             _playerView.Show(false);
         }
