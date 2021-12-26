@@ -1,9 +1,10 @@
+using Sei.Common.Presentation.Controller.Interface;
 using UnityEngine;
 
 namespace Sei.Common.Presentation.Controller
 {
     [RequireComponent(typeof(AudioSource))]
-    public abstract class BaseSoundController : MonoBehaviour
+    public abstract class BaseSoundController : MonoBehaviour, IVolumeControl
     {
         private AudioSource _audioSource;
 
