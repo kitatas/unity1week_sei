@@ -7,6 +7,20 @@
       "dependencies": {},
       "hash": "50a67d8f419b6cea0398eff6c19cf0bbe11ed609"
     },
+    "com.kelpcoders.efuk": {
+      "version": "https://github.com/KelpCoders/EFUK.git?path=/Packages/EFUK",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "23a19ac40e89ad69b9d128d67caac639339071a1"
+    },
+    "com.neuecc.unirx": {
+      "version": "https://github.com/neuecc/UniRx.git?path=/Assets/Plugins/UniRx/Scripts",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
+    },
     "com.unity.2d.animation": {
       "version": "5.0.7",
       "depth": 0,

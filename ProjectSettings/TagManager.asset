@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Field
+    uniqueID: 1634446293
+    locked: 0
+  - name: Item
+    uniqueID: 1747242791
+    locked: 0
+  - name: Player
+    uniqueID: 2169654327
+    locked: 0
+  - name: Effect
+    uniqueID: 1339342127
+    locked: 0
