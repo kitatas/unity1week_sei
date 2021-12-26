@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sei.Common.Data.DataStore;
 using Sei.Common.Domain.Repository;
 using Sei.Common.Domain.UseCase;
@@ -34,6 +35,12 @@ namespace Sei.Common
             builder.RegisterInstance<BgmController>(DontDestroyController.Instance.bgmController);
             builder.RegisterInstance<SeController>(DontDestroyController.Instance.seController);
             builder.RegisterInstance<TransitionMaskView>(DontDestroyController.Instance.maskView);
+
+            autoInjectGameObjects = new List<GameObject>
+            {
+                DontDestroyController.Instance.bgmController.gameObject,
+                DontDestroyController.Instance.seController.gameObject,
+            };
         }
     }
 }
