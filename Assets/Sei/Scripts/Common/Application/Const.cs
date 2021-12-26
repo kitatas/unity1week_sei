@@ -12,6 +12,6 @@ namespace Sei.Common
 
     public sealed class ProjectConfig
     {
-        public const string GAME_ID = "";
+        public const string GAME_ID = "plus_minus_pp";
     }
 }
